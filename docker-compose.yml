@@ -1,0 +1,54 @@
+version: '3.9'
+services:
+  jupyter-tf-gpu:
+    image: guhzantut/tensorflow:latest-gpu-jupyter
+    ports:
+      - "8889:8888"
+
+    volumes:
+      - C:\Users\gusta\Documents\GitHub:/tf/GitHub
+
+    deploy:
+           resources:
+             reservations:
+               devices:
+                 - capabilities:
+                   - gpu
+      
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIE=all
+
+  jupyter-spark:
+    image: guhzantut/jupyter:spark-notebook
+    ports:
+      - "8887:8888"
+      - 4040:4040
+      - "7077:7077"
+      - "33139:33139"
+      - "45029:45029"
+
+    volumes:
+      - C:\Users\gusta\Documents\GitHub:/home/jovyan/GitHub
+
+    deploy:
+           resources:
+             reservations:
+               devices:
+                 - capabilities:
+                   - gpu
+      
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIE=all
+
+  mysql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    volumes:
+      - C:\Users\gusta\Documents\GitHub:/home/
+    environment:
+      MSSQL_SA_PASSWORD: "10256589Gu@"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
