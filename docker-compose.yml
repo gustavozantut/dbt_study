@@ -23,8 +23,7 @@ services:
     image: guhzantut/jupyter:spark-notebook
     ports:
       - "8887:8888"
-      - 4040:4040
-      - "7077:7077"
+      - "4040:4040"
       - "33139:33139"
       - "45029:45029"
 
